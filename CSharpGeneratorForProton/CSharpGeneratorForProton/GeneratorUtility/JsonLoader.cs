@@ -90,7 +90,7 @@ namespace CSharpGeneratorForProton.Json {
         public static T[] Load<T>(string fileName, string itemName) where T : IGeneratorObject, new() {
             using(var stream = GetContentStream(fileName)) {
                 var root = LoadRootElement(stream);
-                T[] items = GetArray(root, null, default(T[]), Convert);
+                T[] items = GetArray(root, default(T[]), Convert);
                 return items != null ? items : new T[0];
             }
         }
@@ -102,15 +102,20 @@ namespace CSharpGeneratorForProton.Json {
             }
         }
 
-        private static T[] GetArray<T>(ConfigElement element, string itemName, T[] _, Func<ConfigElement, T, T> convert) {
-            if(itemName != null) {
-                element = element.GetElement(itemName);
-            }
+        private static T[] GetArray<T>(ConfigElement element, T[] _, Func<ConfigElement, T, T> convert) {
             List<T> list = new List<T>();
             foreach(var node in element.GetElements()) {
                 list.Add(convert(node, default(T)));
             }
             return list.Count > 0 ? list.ToArray() : null;
+        }
+
+        private static T[] GetArray<T>(ConfigElement element, string itemName, T[] _, Func<ConfigElement, T, T> convert) {
+            var listNode = element.GetElement(itemName);
+            if(listNode != null) {
+                return GetArray<T>(listNode, _, convert);
+            }
+            return null;
         }
 
         private static int Convert(ConfigElement e, int _) {
