@@ -56,7 +56,7 @@ Arguments
 -p              : schema file, Proton output
 -e              : format, json or xml or protobuf
 -f              : output  directory, will put the generated class code
--n              : namespace
+-n              : namespace of the generated class 
 
 Options
 -t              : suffix, generates the suffix for the class  
