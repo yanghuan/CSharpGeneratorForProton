@@ -16,19 +16,20 @@ namespace CSharpGeneratorForProton {
                     }
 
                     string schemaFile = cmds.GetArgument("-p");
-                    string format = cmds.GetArgument("-e");
                     string output = cmds.GetArgument("-f");
                     string nameSpace = cmds.GetArgument("-n");
                     string suffix = cmds.GetArgument("-t", true);
+
+                    bool isToProtobuf = cmds.ContainsKey("-e");
                     string dataDir = cmds.GetArgument("-d", true);
                     string extension = cmds.GetArgument("-b", true);
 
                     Worker w = new Worker(new Worker.Args() {
                         SchemaFile = schemaFile,
-                        Foramt = Utils.ToFormat(format),
                         OutPut = output,
                         Namespace = nameSpace,
                         Suffix = suffix,
+                        IsToProtobuf = isToProtobuf,
                         DataDir = dataDir,
                         Extension = extension,
                     });
@@ -51,15 +52,15 @@ namespace CSharpGeneratorForProton {
         }
 
         private static void ShowHelpInfo() {
-            const string kHelpMessage = @"Usage: CSharpGeneratorForProton [-p schemaFile] [-e format] [-f output] [-n namespace]
+            const string kHelpMessage = @"Usage: CSharpGeneratorForProton [-p schemaFile] [-f output] [-n namespace]
 Arguments 
 -p              : schema file, Proton output
--e              : format, json or xml or protobuf
 -f              : output  directory, will put the generated class code
 -n              : namespace of the generated class 
 
 Options
 -t              : suffix, generates the suffix for the class  
+-e              : convert exportfile to protobuf
 -d              : protobuf binary data output directory, use only when '-e protbuf'  
 -b              : protobuf binary data file extension, use only when '-e protbuf'  
 -h              : show the help message    

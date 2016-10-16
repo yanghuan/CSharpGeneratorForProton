@@ -13,16 +13,10 @@ using Microsoft.CSharp;
 using Newtonsoft.Json.Linq;
 
 namespace CSharpGeneratorForProton {
-    public enum ExportFormat {
-        Xml,
-        Json,
-        Protobuf,
-    }
-
     public sealed class Worker {
         public sealed class Args {
             public string SchemaFile;
-            public ExportFormat Foramt;
+            public bool IsToProtobuf;
             public string OutPut;
             public string Namespace;
             public string Suffix;
@@ -49,7 +43,6 @@ namespace CSharpGeneratorForProton {
 
             Utils.CreateDirectory(args_.OutPut);
             Utils.CreateDirectory(args_.DataDir);
-            bool isProtobuf = args_.Foramt == ExportFormat.Protobuf; 
 
             List<CodeUnitCreator> units = new List<CodeUnitCreator>();
             foreach(JObject item in array) {
@@ -57,7 +50,7 @@ namespace CSharpGeneratorForProton {
                 units.Add(codeUnitCreator);
             }
 
-            if(isProtobuf) {
+            if(args_.IsToProtobuf) {
                 CSharpCodeProvider provider = new CSharpCodeProvider();
                 CompilerParameters cp = new CompilerParameters();
                 cp.ReferencedAssemblies.Add(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "protobuf-net.dll"));
@@ -206,12 +199,11 @@ namespace CSharpGeneratorForProton {
             if(IsProtobuf) {
                 CodeNamespaceImport protoBufImport = new CodeNamespaceImport("ProtoBuf");
                 nameSpace.Imports.Add(protoBufImport);
-                string exportForamt = Path.GetExtension(exportFile_);
-                ExportFormat fileFromat = Utils.ToFormat(exportForamt.Remove(0, 1));
-                if(fileFromat != ExportFormat.Json || fileFromat != ExportFormat.Xml) {
+                string exportForamt = Path.GetExtension(exportFile_).Remove(0, 1).ToFirstCharUpper();
+                if(exportForamt != "Json" && exportForamt != "Xml") {
                     throw new NotSupportedException("exportfile must be json or xml");
                 }
-                nameSpace.Imports.Add(new CodeNamespaceImport(GetType().Namespace + '.' + fileFromat));
+                nameSpace.Imports.Add(new CodeNamespaceImport(GetType().Namespace + '.' + exportForamt));
 
                 removeProtoCode_ += () => {
                     nameSpace.Imports.Clear();
@@ -253,7 +245,7 @@ namespace CSharpGeneratorForProton {
 
         private bool IsProtobuf {
             get {
-                return args_.Foramt == ExportFormat.Protobuf;
+                return args_.IsToProtobuf;
             }
         }
 
@@ -322,6 +314,13 @@ namespace CSharpGeneratorForProton {
                 CodeMemberMethod initMethod = new CodeMemberMethod() {
                     Name = kOnInitName,
                     Attributes = IsProtobuf ? MemberAttributes.Public : MemberAttributes.Family,
+                };
+                typeDeclaration.Members.Add(initMethod);
+            }
+            else if(IsProtobuf) {
+                CodeMemberMethod initMethod = new CodeMemberMethod() {
+                    Name = kOnInitName,
+                    Attributes = MemberAttributes.Public | MemberAttributes.Final,
                 };
                 typeDeclaration.Members.Add(initMethod);
             }

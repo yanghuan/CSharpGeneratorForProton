@@ -64,10 +64,6 @@ namespace CSharpGeneratorForProton {
             return s;
         }
 
-        public static ExportFormat ToFormat(string format) {
-            return (ExportFormat)Enum.Parse(typeof(ExportFormat), format, true);
-        }
-
         public static void CreateDirectory(string dir) {
             if(!string.IsNullOrEmpty(dir)) {
                 if(!Directory.Exists(dir)) {
