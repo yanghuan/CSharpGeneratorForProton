@@ -73,7 +73,7 @@ namespace CSharpGeneratorForProton.Protobuf {
                     var baseClassModel = RuntimeTypeModel.Default[baseType];
                     var subClassModel = RuntimeTypeModel.Default[type];
 
-                    /** 使用继承方式序列化时,派生类需重新添加一遍所需序列化的字段,此外还需要修改protobuf-net的源码
+                    /** 使用继承方式序列化时,派生类需重新添加一遍所需序列化的字段,此外若派生类使用了同名字段覆盖基类,还需要修改protobuf-net的源码
                         将protobuf-net\Meta\MetaType.cs中AddField方法中的    
                         if(members != null && members.Length == 1) mi = members[0];
                         修改为
