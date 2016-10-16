@@ -61,8 +61,8 @@ Arguments
 Options
 -t              : suffix, generates the suffix for the class  
 -e              : convert exportfile to protobuf
--d              : protobuf binary data output directory, use only when '-e protbuf'  
--b              : protobuf binary data file extension, use only when '-e protbuf'  
+-d              : protobuf binary data output directory, use only when '-e' exists  
+-b              : protobuf binary data file extension, use only when '-e' exists
 -h              : show the help message    
 ";
             Console.Error.WriteLine(kHelpMessage);
