@@ -19,7 +19,7 @@ namespace CSharpGeneratorForProton.Json {
     }
 
     public interface IDelayInit {
-        void DelayInit();
+        void OnDelayInit();
     }
 
     public static class GeneratorConfig {
@@ -144,7 +144,7 @@ namespace CSharpGeneratorForProton.Json {
 
             IDelayInit delayInit = t as IDelayInit;
             if(delayInit != null) {
-                GeneratorConfig.AddDelayAction(delayInit.DelayInit);
+                GeneratorConfig.AddDelayAction(delayInit.OnDelayInit);
             }
             return t;
         }
