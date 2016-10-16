@@ -79,22 +79,23 @@ namespace CSharpGeneratorForProton {
             }
             else {
                 foreach(CodeUnitCreator unit in units) {
-                    Save(unit.GetCodeCompileUnit());
+                    Save(unit);
                 }
             }
         }
 
-        private void Save(CodeCompileUnit compileUnit) {
+        private void Save(CodeUnitCreator unit) {
             const int kDynamicVersionLineNum = 3;
 
             using(MemoryStream stream = new MemoryStream()) {
                 StreamWriter sourceWriter = new StreamWriter(stream);
+                CodeCompileUnit compileUnit = unit.GetCodeCompileUnit();
                 provider_.GenerateCodeFromCompileUnit(compileUnit, sourceWriter, options_);
                 sourceWriter.Flush();
                 stream.Seek(0, SeekOrigin.Begin);
 
                 int count = 0;
-                string path = Path.Combine(args_.OutPut, GetRootClassName(compileUnit) + ".cs");
+                string path = Path.Combine(args_.OutPut, unit.RootClassName + ".cs");
                 StreamReader reader = new StreamReader(stream);
                 using(StreamWriter fileWriter = new StreamWriter(path)) {
                     while(true) {
@@ -120,10 +121,6 @@ namespace CSharpGeneratorForProton {
             }
         }
 
-        private string GetRootClassName(CodeCompileUnit compileUnit) {
-            return compileUnit.Namespaces[0].Types[0].Name;
-        }
-
         private void ToProtobuf(Assembly assembly, CodeUnitCreator unit) {
             string fullName = args_.Namespace + '.' + unit.RootClassName;
             Type type = assembly.GetType(fullName);
@@ -139,7 +136,7 @@ namespace CSharpGeneratorForProton {
                 }
             }
             unit.RemoveProtoCode();
-            Save(unit.GetCodeCompileUnit());
+            Save(unit);
         }
     }
 

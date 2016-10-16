@@ -63,7 +63,7 @@ Options
 -e              : convert exportfile to protobuf
 -d              : protobuf binary data output directory, use only when '-e' exists  
 -b              : protobuf binary data file extension, use only when '-e' exists
--h              : show the help message    
+-h              : show the help message and exit    
 ";
             Console.Error.WriteLine(kHelpMessage);
         }
