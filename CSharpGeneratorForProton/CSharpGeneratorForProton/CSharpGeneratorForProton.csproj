@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GeneratorUtility\JsonLoader.cs" />
+    <Compile Include="GeneratorUtility\ProtobufLoader.cs" />
     <Compile Include="GeneratorUtility\XmlLoader.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

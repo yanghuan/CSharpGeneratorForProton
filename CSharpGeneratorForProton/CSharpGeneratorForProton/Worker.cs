@@ -208,6 +208,9 @@ namespace CSharpGeneratorForProton {
                 nameSpace.Imports.Add(protoBufImport);
                 string exportForamt = Path.GetExtension(exportFile_);
                 ExportFormat fileFromat = Utils.ToFormat(exportForamt.Remove(0, 1));
+                if(fileFromat != ExportFormat.Json || fileFromat != ExportFormat.Xml) {
+                    throw new NotSupportedException("exportfile must be json or xml");
+                }
                 nameSpace.Imports.Add(new CodeNamespaceImport(GetType().Namespace + '.' + fileFromat));
 
                 removeProtoCode_ += () => {
