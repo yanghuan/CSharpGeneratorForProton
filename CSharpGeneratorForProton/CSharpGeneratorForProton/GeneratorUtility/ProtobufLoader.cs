@@ -78,7 +78,7 @@ namespace CSharpGeneratorForProton.Protobuf {
                         if(members != null && members.Length == 1) mi = members[0];
                         修改为
                         if(members != null)
-			            {
+                        {
          	                foreach(MemberInfo m in members)
                             {
                                 bool isSuccess = m.IsDefined(typeof(ProtoMemberAttribute), true);
