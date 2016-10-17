@@ -90,7 +90,7 @@ namespace CSharpGeneratorForProton.Protobuf {
 					        }
 			            }
 			            //if(members != null && members.Length == 1) mi = members[0];
-                     **/
+                        **/
 
                     foreach(var f in baseClassModel.GetFields()) {
                         subClassModel.AddField(f.FieldNumber, f.Name);
@@ -109,8 +109,7 @@ namespace CSharpGeneratorForProton.Protobuf {
 
         private static Stream GetContentStream(string fileName) {
             string path = Path.Combine(GeneratorConfig.ConfigDir, fileName + ".bytes");
-            if (!File.Exists(path))
-            {
+            if(!File.Exists(path)) {
                 return null;
             }
             return new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read);
