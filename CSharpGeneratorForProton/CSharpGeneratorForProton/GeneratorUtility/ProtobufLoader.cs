@@ -79,18 +79,18 @@ namespace CSharpGeneratorForProton.Protobuf {
                         修改为
                         if(members != null)
 			            {
-			   	            foreach(MemberInfo m in members)
-					        {
-						        bool isSuccess = m.IsDefined(typeof(ProtoMemberAttribute), true);
-						        if(isSuccess)
-						        {
-							        mi = m;
+         	                foreach(MemberInfo m in members)
+                            {
+                                bool isSuccess = m.IsDefined(typeof(ProtoMemberAttribute), true);
+                                if(isSuccess)
+                                {
+                                    mi = m;
                                     break;
-						        }
-					        }
-			            }
-			            //if(members != null && members.Length == 1) mi = members[0];
-                        **/
+                                }
+                            }
+                        }
+                        //if(members != null && members.Length == 1) mi = members[0];
+                    **/
 
                     foreach(var f in baseClassModel.GetFields()) {
                         subClassModel.AddField(f.FieldNumber, f.Name);
