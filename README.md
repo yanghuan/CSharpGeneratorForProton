@@ -17,7 +17,7 @@ Options
 -h              : show the help message and exit 
 ```
 ## Generated Code Import
-Generated C # code is not associated with the specific format, the specific read operation, are assigned to the GeneratorUtility tool for processing, so the need to add the corresponding tool category into the project. The code is under the [Directory GeneratorUtility] (https://github.com/sy-yanghuan/CSharpGeneratorForProton/tree/master/CSharpGeneratorForProton/GeneratorUtility), you can modify the code according to the specific requirements, such as replacing the namespace, replace the read Library and so on.
+Generated C # code is not associated with the specific format, the specific read operation, are assigned to the GeneratorUtility class for processing, so the need to add the corresponding class into the project. The code is under the [Directory GeneratorUtility] (https://github.com/sy-yanghuan/CSharpGeneratorForProton/tree/master/CSharpGeneratorForProton/GeneratorUtility), you can modify the code according to the specific requirements, such as replacing the namespace, replace the read Library and so on.
 - [GeneratorUtility for xml](https://github.com/sy-yanghuan/CSharpGeneratorForProton/blob/master/CSharpGeneratorForProton/CSharpGeneratorForProton/GeneratorUtility/XmlLoader.cs)
 - [GeneratorUtility for json](https://github.com/sy-yanghuan/CSharpGeneratorForProton/blob/master/CSharpGeneratorForProton/CSharpGeneratorForProton/GeneratorUtility/JsonLoader.cs)
 - [GeneratorUtility for protobuf](https://github.com/sy-yanghuan/CSharpGeneratorForProton/blob/master/CSharpGeneratorForProton/CSharpGeneratorForProton/GeneratorUtility/ProtobufLoader.cs)  
