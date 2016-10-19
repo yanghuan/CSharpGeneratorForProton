@@ -56,4 +56,4 @@ Options
 [Example](https://github.com/sy-yanghuan/CSharpGeneratorForProton/tree/master/CSharpGeneratorForProton/Example)工程是一个完整的载入配置的实例，其载入配置是通过[proton的实例](https://github.com/sy-yanghuan/proton/tree/master/sample)导出的。
 
 ##*许可证*
-[Apache 2.0 license](LICENSE).
+[Apache 2.0 license](https://github.com/sy-yanghuan/CSharpGeneratorForProton/blob/master/LICENSE).
