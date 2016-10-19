@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GlobalConfig HitCorrection="1.0" NameLimit="7">
+    <LevelRange Max="99" Min="1"/>
+    <InitItems>
+        <InitItem>1001</InitItem>
+        <InitItem>1002</InitItem>
+        <InitItem>1003</InitItem>
+    </InitItems>
+</GlobalConfig>

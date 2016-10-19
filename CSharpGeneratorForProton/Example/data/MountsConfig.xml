@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MountsConfig>
+    <Mounts>
+        <Mount Id="10001"/>
+        <Mount Id="10002"/>
+        <Mount Id="10003"/>
+    </Mounts>
+</MountsConfig>

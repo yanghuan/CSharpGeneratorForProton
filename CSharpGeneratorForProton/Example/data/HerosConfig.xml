@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<HerosConfig>
+    <Heros>
+        <Hero Height="1.81" Id="1" MountId="10001" Sex="True">
+            <Weapons>
+                <Weapon>1001</Weapon>
+            </Weapons>
+            <Property Hp="20000" Magic="10000"/>
+            <Bags>
+                <Bag Count="10" Id="10001"/>
+                <Bag Count="100" Id="10002"/>
+                <Bag Count="25" Id="10003"/>
+            </Bags>
+        </Hero>
+        <Hero Height="1.86" Id="2" MountId="10002" Sex="True">
+            <Weapons>
+                <Weapon>1002</Weapon>
+            </Weapons>
+            <Property Hp="30000" Magic="1000"/>
+            <Bags>
+                <Bag Count="7" Id="10001"/>
+                <Bag Count="101" Id="10002"/>
+                <Bag Count="26" Id="10003"/>
+            </Bags>
+        </Hero>
+        <Hero Height="1.72" Id="3" Sex="False">
+            <Weapons>
+                <Weapon>1003</Weapon>
+                <Weapon>1004</Weapon>
+                <Weapon>1005</Weapon>
+            </Weapons>
+            <Property Hp="10000" Magic="20000"/>
+            <Bags>
+                <Bag Count="35" Id="10004"/>
+                <Bag Count="20" Id="10002"/>
+                <Bag Count="100" Id="10003"/>
+            </Bags>
+        </Hero>
+    </Heros>
+</HerosConfig>
