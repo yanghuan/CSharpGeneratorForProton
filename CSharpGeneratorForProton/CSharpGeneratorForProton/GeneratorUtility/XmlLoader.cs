@@ -103,18 +103,15 @@ namespace CSharpGeneratorForProton.Xml {
         }
 
         private static T[] GetArray<T>(ConfigElement element, string itemName, T[] _, Func<ConfigElement, T, T> convert) {
-            string childName = itemName.Remove(itemName.Length - 1);
-
             var listNode = element.GetElement(itemName);
             if(listNode != null) {
+                string childName = itemName.Remove(itemName.Length - 1);
                 List<T> list = new List<T>();
                 foreach(var node in listNode.GetElements(childName)) {
                     list.Add(convert(node, default(T)));
                 }
-
                 return list.Count > 0 ? list.ToArray() : null;
             }
-
             return null;
         }
 
