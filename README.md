@@ -17,7 +17,7 @@ Options
 -h              : show the help message and exit 
 ```
 ## Generated Code Import
-Generated C # code is not associated with the specific format, the specific read operation, are assigned to the GeneratorUtility class for processing, so the need to add the corresponding class into the project. The code is under the [Directory GeneratorUtility] (https://github.com/sy-yanghuan/CSharpGeneratorForProton/tree/master/CSharpGeneratorForProton/GeneratorUtility), you can modify the code according to the specific requirements, such as replacing the namespace, replace the read Library and so on.
+Generated C # code is not associated with the specific format, the specific read operation, are assigned to the GeneratorUtility class for processing, so the need to add the corresponding class into the project. The code is under the [Directory GeneratorUtility](https://github.com/sy-yanghuan/CSharpGeneratorForProton/tree/master/CSharpGeneratorForProton/GeneratorUtility), you can modify the code according to the specific requirements, such as replacing the namespace, replace the read Library and so on.
 - [GeneratorUtility for xml](https://github.com/sy-yanghuan/CSharpGeneratorForProton/blob/master/CSharpGeneratorForProton/CSharpGeneratorForProton/GeneratorUtility/XmlLoader.cs)
 - [GeneratorUtility for json](https://github.com/sy-yanghuan/CSharpGeneratorForProton/blob/master/CSharpGeneratorForProton/CSharpGeneratorForProton/GeneratorUtility/JsonLoader.cs)
 - [GeneratorUtility for protobuf](https://github.com/sy-yanghuan/CSharpGeneratorForProton/blob/master/CSharpGeneratorForProton/CSharpGeneratorForProton/GeneratorUtility/ProtobufLoader.cs)  
@@ -30,7 +30,7 @@ Generated C # code is not associated with the specific format, the specific read
 
 _____________________
 # CSharpGeneratorForProton
-CSharpGeneratorForProton 是为[proton] (https://github.com/sy-yanghuan/proton)产生读取xml、json、protobuf的C#的代码。其还可将xml、jsond配置文件转换成protobuf二进制格式。
+CSharpGeneratorForProton 是为[proton](https://github.com/sy-yanghuan/proton)产生读取xml、json、protobuf的C#的代码。其还可将xml、jsond配置文件转换成protobuf二进制格式。
 ## 命令行参数
 ```cmd
 Usage: CSharpGeneratorForProton [-p schemaFile] [-f output] [-n namespace]
@@ -55,5 +55,5 @@ Options
 ## 实例工程
 [Example](https://github.com/sy-yanghuan/CSharpGeneratorForProton/tree/master/CSharpGeneratorForProton/Example)工程是一个完整的载入配置的实例，其载入配置是通过[proton的实例](https://github.com/sy-yanghuan/proton/tree/master/sample)导出的。
 
-##*许可证*
+## *许可证*
 [Apache 2.0 license](https://github.com/sy-yanghuan/CSharpGeneratorForProton/blob/master/LICENSE).
