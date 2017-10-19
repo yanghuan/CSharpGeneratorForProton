@@ -1,6 +1,6 @@
 [English](https://github.com/sy-yanghuan/CSharpGeneratorForProton#csharpgeneratorforproton)   [Chinese](https://github.com/sy-yanghuan/CSharpGeneratorForProton#csharpgeneratorforproton-1)  
 # CSharpGeneratorForProton
-CSharpGeneratorForProton generated C # code that reads xml, json, protobuf for [proton] (https://github.com/sy-yanghuan/proton). And xml, json can be converted to protobuf binary format (using protobuf-net).
+CSharpGeneratorForProton generated C # code that reads xml, json, protobuf for [proton](https://github.com/sy-yanghuan/proton). And xml, json can be converted to protobuf binary format (using protobuf-net).
 ## Command Line Parameters
 ```cmd
 Usage: CSharpGeneratorForProton [-p schemaFile] [-f output] [-n namespace]
