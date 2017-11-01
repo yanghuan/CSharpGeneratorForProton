@@ -8,35 +8,29 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Ice.Project.Config
-{
-    
-    
-    public class MountTemplate : IGeneratorObject
-    {
-        
-        // 索引
-        public int Id { get; private set; }
-        
-        public void Read(ConfigElement element)
-        {
-            this.Id = GeneratorUtility.Get(element, "Id", this.Id);
-            this.OnInit();
-        }
-        
-        protected virtual void OnInit()
-        {
-        }
-        
-        public static MountTemplate[] Load()
-        {
-            return Load<MountTemplate>();
-        }
-        
-        public static T[] Load<T>()
-            where T : MountTemplate, new ()
-        {
-            return GeneratorUtility.Load<T>("MountsConfig", "Mount");
-        }
+namespace Ice.Project.Config {
+
+
+  public class MountTemplate : IGeneratorObject {
+
+    // 索引
+    public int Id { get; private set; }
+
+    public void Read(ConfigElement element) {
+      this.Id = GeneratorUtility.Get(element, "Id", this.Id);
+      this.OnInit();
     }
+
+    protected virtual void OnInit() {
+    }
+
+    public static MountTemplate[] Load() {
+      return Load<MountTemplate>();
+    }
+
+    public static T[] Load<T>()
+        where T : MountTemplate, new() {
+      return GeneratorUtility.Load<T>("MountsConfig", "Mount");
+    }
+  }
 }
