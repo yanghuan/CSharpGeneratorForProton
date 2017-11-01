@@ -342,9 +342,7 @@ namespace CSharpGeneratorForProton {
       CodeStatementCollection statements = new CodeStatementCollection();
       foreach (var i in type) {
         JArray a = (JArray)i.Value;
-        JToken itemType;
-        string itemDescription;
-        GetTypeInfo(a, out itemType, out itemDescription);
+        GetTypeInfo(a, out JToken itemType, out string itemDescription);
         string typeName = Build(i.Key, itemType, typeDeclaration);
         var statement = AddProperty(i.Key, typeName, itemDescription, typeDeclaration);
         statements.Add(statement);
@@ -354,10 +352,19 @@ namespace CSharpGeneratorForProton {
       return typeDeclaration;
     }
 
+    private CodeTypeDeclaration BuildObject(string name, CodeTypeDeclaration baseType, CodeTypeDeclaration parent) {
+      baseType.TypeAttributes &= ~TypeAttributes.Sealed;
+      CodeTypeDeclaration typeDeclaration = new CodeTypeDeclaration(name) {
+        IsClass = true,
+        TypeAttributes = TypeAttributes.Public | TypeAttributes.Sealed,
+      };
+      typeDeclaration.BaseTypes.Add(baseType.Name);
+      parent.Members.Add(typeDeclaration);
+      return typeDeclaration;
+    }
+
     private string BuildArray(string name, JArray array, CodeTypeDeclaration parent) {
-      JToken baseType;
-      string _;
-      GetTypeInfo(array, out baseType, out _);
+      GetTypeInfo(array, out JToken baseType, out string _);
       string baseName = name.Remove(name.Length - 1);
       return Build(baseName, baseType, parent) + "[]";
     }
@@ -371,10 +378,12 @@ namespace CSharpGeneratorForProton {
             return BuildArray(name, (JArray)type, parent);
           }
         case JTokenType.Object: {
+            name = name.ToFirstCharUpper() + '_';
             string json = type.ToString();
             var typeDeclaration = typeDeclarations_.GetOrDefault(json);
-            if (typeDeclaration == null) {
-              name = name.ToFirstCharUpper() + '_';
+            if (typeDeclaration != null) {
+              typeDeclaration = BuildObject(name, typeDeclaration, parent);
+            } else {
               typeDeclaration = BuildObject(name, (JObject)type, null, parent);
               typeDeclarations_.Add(json, typeDeclaration);
             }
