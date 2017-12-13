@@ -30,7 +30,7 @@ Generated C # code is not associated with the specific format, the specific read
 
 _____________________
 # CSharpGeneratorForProton
-CSharpGeneratorForProton 是为[proton](https://github.com/sy-yanghuan/proton)产生读取xml、json、protobuf的C#的代码。其还可将xml、jsond配置文件转换成protobuf二进制格式。
+CSharpGeneratorForProton 是为[proton](https://github.com/sy-yanghuan/proton)产生读取xml、json、protobuf的C#的代码。其还可将xml、json配置文件转换成protobuf二进制格式。
 ## 命令行参数
 ```cmd
 Usage: CSharpGeneratorForProton [-p schemaFile] [-f output] [-n namespace]
