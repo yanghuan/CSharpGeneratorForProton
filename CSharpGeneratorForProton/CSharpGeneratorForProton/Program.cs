@@ -23,6 +23,7 @@ namespace CSharpGeneratorForProton {
           bool isToProtobuf = cmds.ContainsKey("-e");
           string dataDir = cmds.GetArgument("-d", true);
           string extension = cmds.GetArgument("-b", true);
+          bool hasCSharpLua = cmds.ContainsKey("-csl");
 
           Worker w = new Worker(new Worker.Args() {
             SchemaFile = schemaFile,
@@ -32,6 +33,7 @@ namespace CSharpGeneratorForProton {
             IsToProtobuf = isToProtobuf,
             DataDir = dataDir,
             Extension = extension,
+            HasCSharpLua = hasCSharpLua,
           });
           w.Do();
         } catch (CmdArgumentException e) {

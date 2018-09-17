@@ -22,6 +22,7 @@ namespace CSharpGeneratorForProton {
       public string Suffix;
       public string DataDir;
       public string Extension;
+      public bool HasCSharpLua;
     }
 
     private CodeDomProvider provider_ = CodeDomProvider.CreateProvider("CSharp");
@@ -296,6 +297,11 @@ namespace CSharpGeneratorForProton {
         Name = kReadName,
         Attributes = MemberAttributes.Public | MemberAttributes.Final,
       };
+      if (args_.HasCSharpLua) {
+        readMethod.Comments.Add(new CodeCommentStatement("<summary>", true));
+        readMethod.Comments.Add(new CodeCommentStatement("@CSharpLua.Ignore", true));
+        readMethod.Comments.Add(new CodeCommentStatement("</summary>", true));
+      }
       CodeParameterDeclarationExpression element = new CodeParameterDeclarationExpression(kConfigElement, kElement);
       readMethod.Parameters.Add(element);
       readMethod.Statements.AddRange(statements);
