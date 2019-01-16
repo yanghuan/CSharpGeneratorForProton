@@ -23,6 +23,7 @@ namespace CSharpGeneratorForProton {
       public string DataDir;
       public string Extension;
       public bool HasCSharpLua;
+      public bool IsKeepPropertyName;
     }
 
     private CodeDomProvider provider_ = CodeDomProvider.CreateProvider("CSharp");
@@ -402,7 +403,7 @@ namespace CSharpGeneratorForProton {
     }
 
     private CodeAssignStatement AddProperty(string name, string typeName, string description, CodeTypeDeclaration parent) {
-      string fieldName = name.ToFirstCharUpper();
+      string fieldName = args_.IsKeepPropertyName ? name : name.ToFirstCharUpper();
       CodeMemberField field = new CodeMemberField(typeName, fieldName) { Attributes = MemberAttributes.Public | MemberAttributes.Final };
       if (!string.IsNullOrEmpty(description)) {
         field.Comments.Add(new CodeCommentStatement(description));

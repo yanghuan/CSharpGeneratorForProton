@@ -24,6 +24,7 @@ namespace CSharpGeneratorForProton {
           string dataDir = cmds.GetArgument("-d", true);
           string extension = cmds.GetArgument("-b", true);
           bool hasCSharpLua = cmds.ContainsKey("-csl");
+          bool isKeepProperyName = cmds.ContainsKey("-k");
 
           Worker w = new Worker(new Worker.Args() {
             SchemaFile = schemaFile,
@@ -34,6 +35,7 @@ namespace CSharpGeneratorForProton {
             DataDir = dataDir,
             Extension = extension,
             HasCSharpLua = hasCSharpLua,
+            IsKeepPropertyName = isKeepProperyName,
           });
           w.Do();
         } catch (CmdArgumentException e) {
@@ -52,17 +54,19 @@ namespace CSharpGeneratorForProton {
 
     private static void ShowHelpInfo() {
       const string kHelpMessage = @"Usage: CSharpGeneratorForProton [-p schemaFile] [-f output] [-n namespace]
-Arguments 
+Arguments
 -p              : schema file, Proton output
 -f              : output directory, will put the generated class code
--n              : namespace of the generated class 
+-n              : namespace of the generated class
 
 Options
--t              : suffix, generates the suffix for the class  
+-t              : suffix, generates the suffix for the class
 -e              : open convert exportfile to protobuf
--d              : protobuf binary data output directory, use only when '-e' exists  
+-d              : protobuf binary data output directory, use only when '-e' exists
 -b              : protobuf binary data file extension, use only when '-e' exists
--h              : show the help message and exit    
+-h              : show the help message and exit
+-csl            : append @CSharpLua.Ignore to Read method
+-k              : Keep property name, do not convert the first letter uppercase
 ";
       Console.Error.WriteLine(kHelpMessage);
     }
