@@ -107,13 +107,13 @@ namespace CSharpGeneratorForProton {
           while (true) {
             string line = reader.ReadLine();
             if (line != null) {
-              if (count == kDynamicVersionLineNum) {   //È¥µô¶¯Ì¬°æ±¾ºÅ,Ã¿´Î±àÒë¶¼»á²»Ò»Ñù
+              if (count == kDynamicVersionLineNum) {   //å»æ‰åŠ¨æ€ç‰ˆæœ¬å·,æ¯æ¬¡ç¼–è¯‘éƒ½ä¼šä¸ä¸€æ ·
                 int post = line.LastIndexOf('.');
                 if (post != -1) {
                   line = line.Substring(0, post);
                 }
               } else if (count > kDynamicVersionLineNum) {
-                line = line.Replace(CodeUnitCreator.kPropertieSignReplace, CodeUnitCreator.kPropertieSign);  //Éú³ÉµÄ×Ô¶¯ÊôĞÔ´úÂë»á¶àÒ»¸ö';',È¥µôËü
+                line = line.Replace(CodeUnitCreator.kPropertieSignReplace, CodeUnitCreator.kPropertieSign);  //ç”Ÿæˆçš„è‡ªåŠ¨å±æ€§ä»£ç ä¼šå¤šä¸€ä¸ª';',å»æ‰å®ƒ
               }
               fileWriter.WriteLine(line);
             } else {
@@ -162,6 +162,8 @@ namespace CSharpGeneratorForProton {
       ["double"] = "System.Double",
       ["string"] = "System.String",
       ["bool"] = "System.Boolean",
+      ["long"] = "System.Int64",
+      ["float"] = "System.Single",
     };
 
     private Worker.Args args_;
@@ -185,7 +187,7 @@ namespace CSharpGeneratorForProton {
       if (!string.IsNullOrEmpty(args_.Suffix)) {
         className_ += args_.Suffix.ToFirstCharUpper();
       }
-      isItemTable = root_.Contains(item_ + 's');          //ÅĞ¶ÏÊÇ¸ñÊ½1,»¹ÊÇ¸ñÊ½¶ş
+      isItemTable = root_.Contains(item_ + 's');          //åˆ¤æ–­æ˜¯æ ¼å¼1,è¿˜æ˜¯æ ¼å¼äºŒ
       resultCodeCompileUnit_ = BuildCodeCompileUnit();
     }
 
@@ -425,7 +427,7 @@ namespace CSharpGeneratorForProton {
         CodeAttributeDeclaration protoMemberAttribute = new CodeAttributeDeclaration("ProtoMember", codeAttr);
         field.CustomAttributes.Add(protoMemberAttribute);
       } else {
-        field.Name += kPropertieSign;       //Ê¹×Ö¶Î,±ä³É×Ô¶¯ÊôĞÔ
+        field.Name += kPropertieSign;       //ä½¿å­—æ®µ,å˜æˆè‡ªåŠ¨å±æ€§
       }
 
       CodeAssignStatement assign = new CodeAssignStatement(
